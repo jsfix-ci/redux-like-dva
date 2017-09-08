@@ -1,0 +1,22 @@
+{
+  "name": "redux-like-dva",
+  "version": "1.0.0",
+  "description": "This is an imitation dva in the store management project, the purpose is to be able to use independently",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/aokihu/redux-like-dva.git",
+    "type": "git"
+  },
+  "author": "aokihu <aokihu@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node":">=7"
+  },
+  "scripts": {
+    "test":"node ./test.js"
+  },
+  "dependencies": {
+    "redux": "^3.7.2",
+    "redux-saga": "^0.15.6"
+  }
+}
