@@ -40,17 +40,6 @@ First, you need write model file, you can see dva document at [here](https://git
 ```
 `namespace` is the name of the special state, it is uniquie
 
-        state
-          |
-          |
-  |---|---|---|---|
-  |   |   |   |   |
-  |   |   |   |   |
-book ... ... ... ...
-  ^
-  |
-(namespace)
-
 `state` the initialize state data, it can be array or object
 
 `reducers` user defintion reducer function
@@ -67,6 +56,9 @@ const redux_dva = require('redux-like-dva');
 
 // require the model defintion
 redux_dva.add(require('./model.js'));
+
+// you can add model any times
+redux_dva.add(require('any_model.js'))
 
 // Initlizile the reduxe store
 const myStore = redux_dva.initStore();
