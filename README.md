@@ -57,6 +57,8 @@ First, you need write model file, you can see dva document at [here](https://git
 
 ***effects*** user definition saga function
 
+***subscriptions*** user definition auto start function, they will be run after loaded all reducers and sagas
+
 
 2. Import Redux-like-dva and initialize store object
 
