@@ -39,8 +39,9 @@ module.exports = {
   /**
    * @func initStore
    * @abstract this function have to be executed after add function
+   * @param {Object} data load storage in disk data, this must be pure object
    */
-  initStore(){
+  initStore(data){
 
     let initState = {};
     const tasks = [];
@@ -71,11 +72,7 @@ module.exports = {
         const [ domain, act, ] = type.split( '/' );
         const handler = reducers[act];
 
-        if( domain === namespace && !!handler ){
-          return handler( state, action );
-        }else{
-          return state;
-        }
+        return domain === namespace && !!handler ? handler(state, action) : state;
       };
 
       // TODO add 'lastAction'
@@ -101,7 +98,7 @@ module.exports = {
     // TODO Create store
     const Store = createStore(
       combineReducers( _reducers ),
-      initState ,
+      Object.assign(initState, data), // load extra init data
       applyMiddleware( sagaMiddleware )
     );
 
