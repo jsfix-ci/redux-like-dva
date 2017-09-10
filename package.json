@@ -1,6 +1,6 @@
 {
   "name": "redux-like-dva",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "This is an imitation dva in the store management project, the purpose is to be able to use independently",
   "main": "index.js",
   "repository": {

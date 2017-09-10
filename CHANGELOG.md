@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## Version 1.0.4
+Add checking of model definitions
+
 ## Version 1.0.3
 
 1. Simplify the judgment statement
