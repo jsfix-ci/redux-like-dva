@@ -12,6 +12,11 @@ const model = {
   },
   effects:{
 
+  },
+  subscriptions:{
+    async setup(){
+      await console.log('it is auto start!')
+    }
   }
 }
 

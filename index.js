@@ -43,10 +43,24 @@ module.exports = {
   initStore(){
 
     let initState = {};
+    const tasks = [];
 
+    // TODO initialize reducers
     _models.map(item => {
       // These field is like dva
-      const {namespace, state, reducers, effects,} = item;
+      const {
+        namespace,
+        state,
+        reducers,
+        effects,
+        subscriptions
+      } = item;
+
+      // TODO check namespace is undefiend
+      if(namespace === undefined)
+      {
+        throw('namespace is undefined')
+      }
 
       // TODO Initialize state under the namespace
       initState[namespace] = state;
@@ -74,6 +88,10 @@ module.exports = {
         _sagas[newKey] = effects[key];
       } );
 
+      // TODO add auto task
+      const subscriptionKeys = Object.keys(subscriptions);
+      subscriptionKeys.map(key => tasks.push(subscriptions[key]))
+
     });
 
     // TODO Use saga middleware
@@ -92,6 +110,9 @@ module.exports = {
     sagaMiddleware.run( function*(){
       yield runSaga(  Store, _sagas );
     } );
+
+    // TODO execute auto task
+    tasks.map(task => task())
 
     return Store;
   }

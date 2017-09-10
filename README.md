@@ -35,6 +35,11 @@ First, you need write model file, you can see dva document at [here](https://git
     *find(action , {select, put}){
       ...
     }
+  },
+  subscriptions:{
+    setup(){
+      console.log('this will be start auto');
+    }
   }
 }
 ```
