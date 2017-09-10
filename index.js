@@ -9,6 +9,9 @@ const {takeEvery, takeLatest } = saga.effects;
 const createSagaMiddleware = saga.default;
 const sagaEffects = saga.effects;
 
+// Regex partten defintion
+const actionTypePartten = /(\w+)\/(\w+)/;
+
 // User defines reducer and sagas
 const _reducers = {};
 const _sagas = {};
@@ -64,26 +67,33 @@ module.exports = {
       }
 
       // TODO Initialize state under the namespace
-      initState[namespace] = state;
+      initState[namespace] = state || {};
 
       // TODO Initialize reducers
       _reducers[namespace] = function ( state = {}, action ){
         const {type,} = action;
-        const [ domain, act, ] = type.split( '/' );
-        const handler = reducers[act];
+        const result = actionTypePartten.exec(type);
 
-        return domain === namespace && !!handler ? handler(state, action) : state;
+        if(!!result){
+          const [, domain, act] = result;
+          const handler = reducers[act];
+          return domain === namespace && !!handler ? handler(state, action) : state;
+        }else {
+          return state;
+        }
       };
 
       // TODO add 'lastAction'
       _reducers['lastAction'] = ( state = null, action ) => action;
 
       // TODO Initialize sagas
-      const effectKeys = Object.keys(effects);
-      effectKeys.map( key => {
-        const newKey = `${namespace}/${key}`;
-        _sagas[newKey] = effects[key];
-      } );
+      if(!!effects){
+        const effectKeys = Object.keys(effects);
+        effectKeys.map( key => {
+          const newKey = `${namespace}/${key}`;
+          _sagas[newKey] = effects[key];
+        } );
+      }
 
       // TODO add auto task
       const subscriptionKeys = Object.keys(subscriptions);
