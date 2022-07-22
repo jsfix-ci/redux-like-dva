@@ -10,13 +10,13 @@
   "author": "aokihu <aokihu@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test":"node ./test.js"
+    "test": "node ./test.js"
   },
   "engines": {
     "node": ">=7.0.0"
   },
   "dependencies": {
     "redux": "^3.7.2",
-    "redux-saga": "^0.15.6"
+    "redux-saga": "^1.1.3"
   }
 }

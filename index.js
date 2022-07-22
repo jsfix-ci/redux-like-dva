@@ -1,3 +1,4 @@
+const effects = require('redux-saga/effects');
 /**
  * @author aokihu aokihu@gmail.com
  * @version 1.0.0
@@ -5,9 +6,9 @@
 const redux = require('redux');
 const saga = require('redux-saga');
 const {createStore, combineReducers,applyMiddleware,} = redux;
-const {takeEvery, takeLatest } = saga.effects;
+const {takeEvery, takeLatest } = effects;
 const createSagaMiddleware = saga.default;
-const sagaEffects = saga.effects;
+const sagaEffects = effects;
 
 // Regex partten defintion
 const actionTypePartten = /(\w+)\/(\w+)/;
